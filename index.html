@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluación Grupal 2 - UNALM</title>
+<style>
+/* === ESTILOS VISUALES (PALETA TIERRA/OTOÑO) === */
+:root {
+    --c-naranja: #F6A855;   /* Énfasis y bordes */
+    --c-taupe:   #8A7270;   /* Textos secundarios */
+    --c-cafe:    #452B1A;   /* Fondo Principal */
+    --c-oliva:   #C2C389;   /* Subtítulos y detalles */
+    --c-terra:   #70321B;   /* Encabezados y botones */
+    --c-negro:   #1a1a1a;   /* Fondo de código */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--c-cafe);
+    color: #f0f0f0;
+    overflow: hidden;
+}
+
+/* HEADER FIJO */
+header {
+    background: linear-gradient(135deg, var(--c-cafe), var(--c-terra));
+    border-bottom: 4px solid var(--c-naranja);
+    height: 70px; /* Un poco más compacto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0; width: 100%; z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+header h1 {
+    font-size: 1.4rem;
+    color: var(--c-naranja);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* CONTENEDOR DE SLIDES */
+main {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    padding-top: 70px;
+}
+
+section {
+    min-width: 100%;
+    height: 100%;
+    padding: 1rem 3rem 4rem; /* Padding bottom extra para scroll */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle at center, #5a3822 0%, var(--c-cafe) 100%);
+}
+
+/* TIPOGRAFÍA */
+h2 {
+    color: var(--c-naranja);
+    font-size: 2.2rem;
+    margin: 1.5rem 0;
+    border-bottom: 2px solid var(--c-oliva);
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+/* CORRECCIÓN DE ALINEACIÓN DE H3 */
+h3 { 
+    color: var(--c-oliva); 
+    margin: 1.5rem 0 0.8rem; 
+    font-size: 1.4rem; 
+    text-align: center; /* Centrado para que no se vea descuadrado */
+    width: 100%; 
+    max-width: 900px;
+    border-bottom: 1px dashed var(--c-taupe); /* Detalle sutil abajo en vez de izquierda */
+    padding-bottom: 5px;
+}
+
+/* TABLAS DE DATOS */
+.data-table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--c-taupe);
+    font-size: 0.95rem;
+}
+.data-table th {
+    background: var(--c-terra);
+    color: var(--c-naranja);
+    padding: 12px;
+    text-align: left;
+}
+.data-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #eee;
+}
+.data-table tr:hover { background: rgba(246, 168, 85, 0.1); }
+.winner { color: #4caf50; font-weight: bold; }
+
+/* CAJAS DE CÓDIGO */
+.code-box {
+    background: var(--c-negro);
+    border-left: 5px solid var(--c-naranja);
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 1.1rem;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    margin-bottom: 1rem;
+}
+.kw { color: #569cd6; font-weight: bold; } 
+.str { color: #ce9178; } 
+.com { color: #6a9955; font-style: italic; }
+
+/* IMÁGENES Y GRÁFICOS */
+.chart-container {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid var(--c-taupe);
+    display: flex;
+    justify-content: center;
+}
+.chart-img {
+    max-height: 280px;
+    width: auto;
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+/* CAJAS DE EXPLICACIÓN */
+.explanation-box {
+    background: rgba(194, 195, 137, 0.08);
+    border: 1px solid var(--c-oliva);
+    padding: 1.2rem;
+    border-radius: 8px;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 10px;
+}
+.explanation-box p { margin-bottom: 0.8rem; line-height: 1.6; color: #ddd; }
+.explanation-box strong { color: var(--c-naranja); }
+
+/* ESTILOS ESPECÍFICOS PORTADA */
+.unalm-header table { width: 100%; border: none; background: transparent; }
+.unalm-header td { border: none; color: white; }
+.info-card {
+    background: rgba(0,0,0,0.3);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--c-taupe);
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+}
+.project-title { font-size: 1.5rem; color: var(--c-naranja); margin-bottom: 0.5rem; text-align: center; }
+
+/* NAVEGACIÓN */
+.nav-btn {
+    position: fixed; bottom: 2rem;
+    background: var(--c-terra); color: white;
+    border: 2px solid var(--c-naranja);
+    padding: 0.7rem 2rem; border-radius: 30px;
+    cursor: pointer; font-weight: bold; font-size: 1rem;
+    z-index: 200; transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+.nav-btn:hover { background: var(--c-naranja); color: var(--c-cafe); transform: scale(1.05); }
+#prev { left: 2rem; } #next { right: 2rem; }
+
+/* SLIDE FINAL */
+.ty-slide { display: flex; flex-direction: column; justify-content: center; height: 80%; }
+
+/* SCROLLBAR PERSONALIZADO */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--c-cafe); }
+::-webkit-scrollbar-thumb { background: var(--c-taupe); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--c-naranja); }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Evaluación Grupal 2 - Lenguaje de Programación II</h1>
+</header>
+
+<main id="slider">
+
+    <section>
+        <div class="unalm-header" style="max-width: 900px; width: 100%; margin-top: 1rem;">
+            <table>
+              <tr>
+                <td style="padding-right: 20px; width: 120px;">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Unalm_logo.png" width="115" alt="Logo UNALM" />
+                </td>
+                <td style="vertical-align: middle; font-size: 1.2rem; line-height: 1.2;">
+                  <strong style="font-size: 1.4rem; color: var(--c-naranja);">Universidad Nacional Agraria La Molina</strong><br>
+                  <span style="color: var(--c-oliva);">Facultad de Economía y Planificación</span><br>
+                  <span style="color: #ddd;">Departamento de Estadística e Informática</span>
+                </td>
+              </tr>
+            </table>
+
+            <div class="info-card" style="margin-top: 1rem; font-size: 0.95rem;">
+                <p><strong>Docente:</strong> Ana Cecilia Vargas Paredes <br>
+                📧 <em>anavargas@lamolina.edu.pe</em> | 🏫 <em>Oficina:</em> N.º 13, Facultad de Economía y Planificación<br>
+                🕒 <em>Horario de atención:</em> Martes y jueves, 11:00 – 12:00 h</p>
+            </div>
+
+            <div class="info-card" style="border-color: var(--c-naranja);">
+                <div class="project-title">🧮 Análisis de precios y disponibilidad de libros académicos</div>
+                <p style="margin-bottom: 10px;">Proyecto que consiste en recopilar automáticamente información de distintas plataformas en línea sobre precios, stock y formatos de libros académicos, con el fin de comparar costos, identificar disponibilidad y apoyar la toma de decisiones.</p>
+                <p><strong>Relevancia:</strong> Facilita la comparación de precios para estudiantes, haciendo la búsqueda más eficiente y amena.</p>
+                <p><strong>Producto:</strong> Conjunto de datos con precios, autores y editoriales.</p>
+            </div>
+
+            <table class="data-table" style="margin-top: 1rem; font-size: 0.9rem;">
+                <thead>
+                    <tr><th>Integrante</th><th>Usuario</th><th>Código</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Malvacedo Quiñonez, Jean Franco</td><td>Solitario03</td><td>20231496</td></tr>
+                    <tr><td>Mejia Auccapoma, Piero César</td><td>PC-011</td><td>20230399</td></tr>
+                    <tr><td>Ferro Choque, Alvaro</td><td>Lupinthethird2</td><td>20221398</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2>1. Web Scraping: Lógica de Comparación</h2>
+        
+        <h3>Datos Filtrados (Caso de Estudio: "Pinocho")</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>ISBN</th><th>Título</th><th>Precio SBS</th><th>Precio Crisol</th><th>Mejor Opción</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>9788491421337</td><td>PINOCHO</td><td>S/ 34.93</td><td>S/ 49.90</td><td class="winner">SBS 🏆</td></tr>
+                <tr><td>9788491056584</td><td>AVENTURAS DE...</td><td>S/ 49.00</td><td>S/ 49.00</td><td>EMPATE 🤝</td></tr>
+                <tr><td>9786124301803</td><td>PINOCHO Y SUS...</td><td>S/ 39.00</td><td>S/ 43.00</td><td class="winner">SBS 🏆</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Lógica de Filtrado (Extracto de Web Scraping.ipynb)</h3>
+        <div class="code-box">
+<pre><code><span class="com"># Limpieza y Conversión de Tipos de Datos</span>
+<span class="kw">try</span>:
+    <span class="com"># 1. Eliminamos el símbolo de moneda ("S/ ") para operar matemáticamente</span>
+    precio_sbs = float(item[<span class="str">'Precio_SBS'</span>].replace(<span class="str">"S/ "</span>,<span class="str">""</span>))
+    precio_cri = float(item[<span class="str">'Precio_CRI'</span>].replace(<span class="str">"S/ "</span>,<span class="str">""</span>))
+
+    <span class="com"># 2. Algoritmo de decisión de compra</span>
+    <span class="kw">if</span> precio_sbs < precio_cri:
+        mejor = <span class="str">"SBS"</span>
+    <span class="kw">elif</span> precio_cri < precio_sbs:
+        mejor = <span class="str">"Crisol"</span>
+    <span class="kw">else</span>:
+        mejor = <span class="str">"EMPATE"</span>
+<span class="kw">except</span> ValueError:
+    mejor = <span class="str">"Error en Formato"</span></code></pre>
+        </div>
+
+        <div class="explanation-box">
+            <p><strong>¿Por qué se filtró de este modo?</strong><br>
+            Los datos extraídos directamente de la web son cadenas de texto (ej: "S/ 49.90"). Para realizar un análisis cuantitativo y determinar la "Mejor Opción" automáticamente, fue obligatorio realizar un <strong>pre-procesamiento de limpieza</strong> (Data Cleaning) eliminando caracteres no numéricos y convirtiendo los strings a flotantes.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Consumo de APIs: Normalización JSON</h2>
+        
+        <h3>Estructura de Datos Obtenida</h3>
+        <div class="explanation-box" style="margin-bottom: 1rem;">
+            <p>Las APIs académicas (OpenAlex, Crossref) devuelven objetos JSON profundamente anidados. El reto fue "aplanar" esta estructura para integrarla en un CSV compatible con el Scraping.</p>
+        </div>
+
+        <h3>Lógica de Extracción (Extracto de API_scripts.py)</h3>
+        <div class="code-box">
+<pre><code><span class="com"># Iteración sobre resultados crudos (JSON)</span>
+libros = []
+<span class="kw">for</span> item <span class="kw">in</span> data[<span class="str">"results"</span>]:
+    libros.append({
+        <span class="com"># Uso de .get() para manejo seguro de claves faltantes</span>
+        <span class="str">"titulo"</span>: item.get(<span class="str">"title"</span>),
+        <span class="str">"anio"</span>: item.get(<span class="str">"publication_year"</span>),
+        
+        <span class="com"># Navegación profunda segura: location -> source -> display_name</span>
+        <span class="str">"editorial"</span>: item.get(<span class="str">"primary_location"</span>, {})
+                      .get(<span class="str">"source"</span>, {})
+                      .get(<span class="str">"display_name"</span>, <span class="str">"Editorial Desconocida"</span>)
+    })
+<span class="com"># Resultado: Lista de diccionarios plana lista para Pandas</span></code></pre>
+        </div>
+
+        <div class="explanation-box">
+            <p><strong>¿Por qué se filtró de este modo?</strong><br>
+            En bases de datos masivas como OpenAlex, no todos los registros tienen todos los campos completos. Acceder directamente (ej: <code>item['primary_location']</code>) provocaría que el script se detenga si falta un dato. Usamos el método <code>.get(clave, valor_por_defecto)</code> para garantizar la <strong>robustez</strong> del código y asegurar que la recolección no se interrumpa por errores de formato.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Gráfico 1: Distribución por Fuente de Datos</h2>
+        
+        <div class="chart-container">
+            <img src="Graficos/libros_por_fuente.png" class="chart-img" alt="Gráfico Pastel: Fuentes" onerror="this.style.display='none'; this.parentElement.innerHTML+='<p>[Imagen no encontrada: libros_por_fuente.png]</p>'">
+        </div>
+
+        <div class="code-box">
+<pre><code><span class="com"># Visualización de Proporciones (Matplotlib)</span>
+df[<span class="str">'fuente'</span>].value_counts().plot(kind=<span class="str">'pie'</span>, autopct=<span class="str">'%1.1f%%'</span>, startangle=90)
+plt.title(<span class="str">"Composición del Dataset por Origen"</span>)</code></pre>
+        </div>
+
+        <div class="explanation-box">
+            <p><strong>¿Qué indica este gráfico?</strong><br>
+            Muestra el porcentaje de contribución de cada método de extracción (Scraping Web vs. APIs) al conjunto de datos final.</p>
+            <p><strong>¿Por qué escogimos este gráfico?</strong><br>
+            Es fundamental para validar la <strong>integridad de la integración</strong>. Nos permite demostrar que no dependemos de una sola fuente y que hemos logrado unificar exitosamente datos heterogéneos, cumpliendo el requisito de "Múltiples Fuentes" de la rúbrica.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Gráfico 2: Top Editoriales Académicas</h2>
+        
+        <div class="chart-container">
+            <img src="Graficos/libros_por_editorial.png" class="chart-img" alt="Gráfico Barras: Editoriales" onerror="this.style.display='none';">
+        </div>
+
+        <div class="code-box">
+<pre><code><span class="com"># Análisis de Frecuencia (Pandas)</span>
+top_editoriales = df[<span class="str">'editorial'</span>].value_counts().head(10)
+top_editoriales.plot(kind=<span class="str">'barh'</span>, color=<span class="str">'skyblue'</span>)
+plt.xlabel(<span class="str">"Cantidad de Publicaciones"</span>)</code></pre>
+        </div>
+
+        <div class="explanation-box">
+            <p><strong>¿Qué indica este gráfico?</strong><br>
+            Identifica las 10 editoriales con mayor presencia en nuestro dataset (ej. Springer, O'Reilly).</p>
+            <p><strong>¿Por qué escogimos este gráfico?</strong><br>
+            En el contexto universitario, la <strong>calidad de la fuente</strong> es crítica. Este gráfico valida que nuestra herramienta está recuperando literatura de editoriales científicas y técnicas reconocidas, asegurando que los resultados son útiles para una investigación académica seria.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Gráfico 3: Análisis Temporal (Publicaciones por Año)</h2>
+        
+        <div class="chart-container">
+            <img src="Graficos/libros_por_anio.png" class="chart-img" alt="Gráfico Histograma: Años" onerror="this.style.display='none';">
+        </div>
+
+        <div class="code-box">
+<pre><code><span class="com"># Distribución Histórica</span>
+df[<span class="str">'anio'</span>].plot(kind=<span class="str">'hist'</span>, bins=20, color=<span class="str">'salmon'</span>, edgecolor=<span class="str">'black'</span>)
+plt.title(<span class="str">"Vigencia de la Información Bibliográfica"</span>)</code></pre>
+        </div>
+
+        <div class="explanation-box">
+            <p><strong>¿Qué indica este gráfico?</strong><br>
+            Muestra la frecuencia de libros publicados a lo largo del tiempo, permitiendo ver concentraciones en años recientes o pasados.</p>
+            <p><strong>¿Por qué escogimos este gráfico?</strong><br>
+            Para evaluar la <strong>obsolescencia tecnológica</strong>. Dado que buscamos libros de programación (Python, Data Science), es vital que la herramienta priorice material reciente (últimos 5-10 años). Este gráfico nos confirma si el dataset está actualizado.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Conclusiones Finales</h2>
+        
+        <div class="explanation-box" style="background: rgba(0,0,0,0.4); padding: 2rem; margin-bottom: 2rem;">
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 1.5rem;">
+                    ✅ <strong>Eficacia Económica:</strong> El módulo de Scraping demostró (Caso Pinocho) diferencias de precio superiores al 30% entre proveedores, validando la utilidad de la herramienta para el ahorro estudiantil.
+                </li>
+                <li style="margin-bottom: 1.5rem;">
+                    ✅ <strong>Robustez Técnica:</strong> La implementación de manejo de excepciones (try/except) y métodos seguros (.get) en Python garantizó la ejecución continua de los scripts de recolección masiva.
+                </li>
+                <li style="margin-bottom: 1.5rem;">
+                    ✅ <strong>Sinergia Colaborativa:</strong> La división de tareas (Scraping / APIs / Integración) y su posterior unificación mediante Git permitió procesar un volumen de datos que sería inmanejable manualmente.
+                </li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 1rem; width: 100%; max-width: 950px;">
+            <h3 style="border: none; text-align: center; margin-bottom: 1.5rem;">🔄 Flujo Real del Proyecto</h3>
+            
+            <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+                <div style="background: var(--c-terra); color: white; padding: 0.8rem 1.2rem; border-radius: 20px; border: 2px solid var(--c-naranja); text-align:center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                    Scraping & APIs<br><span style="font-size:0.8em; color: var(--c-naranja);">(Selenium + Requests)</span>
+                </div>
+                
+                <div style="font-size: 1.5rem; color: var(--c-naranja);">→</div>
+                
+                <div style="background: var(--c-cafe); color: white; padding: 0.8rem 1.2rem; border-radius: 20px; border: 2px solid var(--c-naranja); text-align:center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                    Integración y Limpieza<br><span style="font-size:0.8em; color: var(--c-naranja);">(Pandas DataFrame)</span>
+                </div>
+                
+                <div style="font-size: 1.5rem; color: var(--c-naranja);">→</div>
+                
+                <div style="background: var(--c-taupe); color: white; padding: 0.8rem 1.2rem; border-radius: 20px; border: 2px solid var(--c-naranja); text-align:center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                    Análisis Comparativo<br><span style="font-size:0.8em; color: var(--c-naranja);">(Precios y Tendencias)</span>
+                </div>
+                
+                <div style="font-size: 1.5rem; color: var(--c-naranja);">→</div>
+                
+                <div style="background: var(--c-oliva); color: var(--c-cafe); padding: 0.8rem 1.2rem; border-radius: 20px; border: 2px solid var(--c-naranja); font-weight: bold; text-align:center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                    Dashboard Visual<br><span style="font-size:0.8em; color: var(--c-cafe);">(Matplotlib)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="ty-slide">
+            <h2 style="font-size: 5rem; text-shadow: 4px 4px 10px black; border:none; margin-bottom: 2rem;">¡Muchas Gracias!</h2>
+            <p style="text-align: center; font-size: 2rem; color: var(--c-oliva);">Por su atención y tiempo</p>
+        </div>
+    </section>
+
+</main>
+
+<button id="prev" class="nav-btn" onclick="move(-1)">❮ Anterior</button>
+<button id="next" class="nav-btn" onclick="move(1)">Siguiente ❯</button>
+
+<footer>
+    © 2025 - Evaluación Grupal LP2 | Análisis de Datos Académicos
+</footer>
+
+<script>
+    let idx = 0;
+    const slider = document.getElementById('slider');
+    const sections = document.querySelectorAll('section');
+    const total = sections.length;
+
+    function move(n) {
+        idx += n;
+        if (idx < 0) idx = 0;
+        if (idx >= total) idx = total - 1;
+        slider.style.transform = `translateX(-${idx * 100}%)`;
+    }
+
+    // Soporte Teclado
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') move(1);
+        if(e.key === 'ArrowLeft') move(-1);
+    });
+
+    // Soporte Táctil (Swipe)
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    document.addEventListener('touchend', e => {
+        if (e.changedTouches[0].screenX < touchStartX - 50) move(1);
+        if (e.changedTouches[0].screenX > touchStartX + 50) move(-1);
+    });
+</script>
+
+</body>
+</html>
