@@ -115,33 +115,37 @@ h3 {
 .code-box {
     background: var(--c-negro);
     border-left: 5px solid var(--c-naranja);
-    padding: 0.8rem 1.2rem;   /* menos padding para código corto */
+    padding: 1rem;
     border-radius: 6px;
     font-family: 'Consolas', monospace;
-
     font-size: 0.95rem;
     line-height: 1.5;
 
     width: 100%;
     max-width: 900px;
 
-    height: auto;
-    max-height: 420px;
-
-    overflow-y: auto;
-    overflow-x: auto;
-
+    
     box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
     margin-bottom: 1rem;
 }
 
+
 .code-box pre {
     margin: 0;
+
+    max-height: 420px;        /* 👈 límite real */
+    overflow-y: auto;         /* 👈 scroll correcto */
+    overflow-x: auto;
+
+    white-space: pre-wrap;    /* mantiene saltos */
+    word-break: break-word;
 }
+
 
 .code-box code {
     display: block;
 }
+
 
 .kw { color: #569cd6; font-weight: bold; } 
 .str { color: #ce9178; } 
