@@ -280,41 +280,62 @@ h3 {
     </section>
 
 
-    <section class="ppt-slide">
-        <div class="ppt-card">
-            <h2>🎯 Objetivos del Proyecto</h2>
-    
-            <p class="objetivo-general">
-                <strong>🌐 Objetivo General</strong><br>
-                Desarrollar un sistema integral de extracción y procesamiento de datos bibliográficos
-                que combine el consumo de APIs abiertas 🤖 con técnicas de Web Scraping 🕷️,
-                permitiendo centralizar información académica 📚 y comparar precios en tiempo real
-                entre librerías locales (SBS y Crisol) 💰📊.
-            </p>
-    
-            <h3>📌 Objetivos Específicos</h3>
-            <ul class="objetivos-lista">
-                <li>
-                    🔄 <strong>Automatización de Fuentes Académicas:</strong><br>
-                    Implementar scripts en Python 🐍 para consumir APIs
-                    (OpenLibrary, OpenAlex, Crossref) y estructurar metadatos
+<section class="ppt-slide">
+    <div class="ppt-card">
+        <h2>🎯 Objetivos del Proyecto</h2>
+
+        <p class="objetivo-general">
+            <strong> Objetivo General</strong><br>
+            Desarrollar un sistema integral de extracción y procesamiento de datos bibliográficos 
+            que combine el consumo de APIs abiertas con técnicas de Web Scraping 🕷️, 
+            permitiendo centralizar información académica y comparar precios en tiempo real 
+            entre librerías locales (SBS y Crisol) .
+        </p>
+
+        <h3>📌 Objetivos Específicos</h3>
+        <ul class="objetivos-lista">
+            <li>
+                <div class="objective-content">
+                    <strong>Automatización de Fuentes Académicas:</strong><br>
+                    Implementar scripts en Python  para consumir APIs 
+                    (OpenLibrary, OpenAlex, Crossref) y estructurar metadatos 
                     en formatos JSON / CSV.
-                </li>
-    
-                <li>
-                    🛒 <strong>Herramienta de Ahorro (Scraping):</strong><br>
-                    Desarrollar un bot con Selenium 🤖 que compare precios
+                </div>
+                
+                <div class="explanation-box">
+                    <p><strong>¿Por qué estructurar la data?</strong><br>
+                    Las APIs devuelven árboles de datos complejos y anidados. Para que la información sea utilizable, fue necesario realizar un <strong>mapeo y normalización</strong> de campos (parsing), estandarizando autores y fechas en un formato plano (JSON/CSV) compatible con la base de datos.</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="objective-content">
+                    <strong>Herramienta de Ahorro (Scraping):</strong><br>
+                    Desarrollar un bot con Selenium 🤖 que compare precios 
                     de libros específicos (caso “Pinocho”) entre catálogos comerciales.
-                </li>
-    
-                <li>
-                    📈 <strong>Integración y Visualización:</strong><br>
-                    Unificar fuentes heterogéneas en un dataset coherente
+                </div>
+
+                <div class="explanation-box">
+                    <p><strong>¿Por qué se filtró de este modo?</strong><br>
+                    Los datos extraídos directamente de la web son cadenas de texto (ej: "S/ 49.90"). Para realizar un análisis cuantitativo y determinar la "Mejor Opción", fue obligatorio realizar un <strong>Data Cleaning</strong> eliminando caracteres no numéricos y convirtiendo los strings a flotantes.</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="explanation-box"
+                     <strong>Integración y Visualización:</strong><br>
+                    Unificar fuentes heterogéneas en un dataset coherente 
                     para mostrar tablas comparativas y métricas claras.
-                </li>
-            </ul>
-        </div>
-    </section>
+                </div>
+
+                <div class="explanation-box">
+                    <p><strong>¿El reto de la unificación?</strong><br>
+                    Al tener fuentes tan distintas (APIs académicas vs. Tiendas comerciales), no siempre coinciden los identificadores únicos (ISBN). Se aplicó una lógica de <strong>consolidación de datos</strong> para cruzar la información basándose en coincidencias de títulos y metadatos limpios.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
 
 
     <section>
@@ -603,12 +624,25 @@ plt.title(<span class="str">"Vigencia de la Información Bibliográfica"</span>)
         </div>
     </section>
 
+
     <section class="slide-gracias">
         <div class="ty-slide">
-            <h2 style="font-size: 5rem; text-shadow: 4px 4px 10px black; border:none; margin-bottom: 2rem;">¡Muchas Gracias!</h2>
-            <p style="text-align: center; font-size: 2rem; color: var(--c-oliva);">Por su atención y tiempo</p>
+            <h2 style="font-size: 5rem; text-shadow: 4px 4px 10px black; border:none; margin-bottom: 2rem;">
+                ¡Muchas Gracias!
+            </h2>
+    
+            <p style="text-align: center; font-size: 2rem; color: var(--c-oliva); margin-bottom: 2rem;">
+                Por su atención y tiempo
+            </p>
+    
+            <img 
+                src="https://minecraft.wiki/images/Enchanting_Table.gif?904a7"
+                alt="Mesa de encantamientos"
+                class="gracias-gif"
+            >
         </div>
     </section>
+
 
 
 </main>
