@@ -100,11 +100,11 @@ h3 {
 
 
 .slide-gracias {
-    background-image: url("https://www.educaciontrespuntocero.com/wp-content/uploads/2023/02/Biblioteca-del-Trinity-Collage-978x652.jpg");
-    background-repeat: no-repeat;        /* evita que se repita */  
-    background-position: center;         /* centra la imagen */
-    background-size: cover;              /* cubre todo el contenedor */  
-    min-height: 100vh;                   /* altura completa de pantalla opcional */
+    background-image: url("https://javireina.wordpress.com/wp-content/uploads/2016/06/cropped-biblioteca-trinity-college2.jpg");
+    background-repeat: no-repeat;      
+    background-position: center;         
+    background-size: cover;             
+    min-height: 100vh;                
     
     display: flex;
     align-items: center;
@@ -278,6 +278,43 @@ h3 {
             </table>
         </div>
     </section>
+
+
+    <section class="ppt-slide">
+        <div class="ppt-content">
+            <h2>Objetivos</h2>
+    
+            <p class="objetivo-general">
+                <strong>Objetivo General:</strong>
+                Desarrollar un sistema integral de extracción y procesamiento de datos bibliográficos
+                que combine el consumo de APIs abiertas con técnicas de Web Scraping, con el fin de
+                centralizar información académica y proporcionar una herramienta automatizada de
+                comparación de precios en tiempo real entre librerías locales (SBS y Crisol),
+                facilitando así la toma de decisiones económicas y de investigación para el usuario.
+            </p>
+    
+            <h3>Objetivos Específicos</h3>
+            <ul>
+                <li>
+                    <strong>Automatización de Fuentes Académicas:</strong>
+                    Implementar scripts en Python para la consulta masiva de APIs
+                    (OpenLibrary, OpenAlex, Crossref), estructurando metadatos clave
+                    (título, autor, DOI, editorial) en formatos estandarizados (JSON/CSV).
+                </li>
+                <li>
+                    <strong>Herramienta de Ahorro (Scraping):</strong>
+                    Desarrollar un bot con Selenium que compare precios de libros
+                    específicos (caso “Pinocho”) en catálogos comerciales.
+                </li>
+                <li>
+                    <strong>Integración y Visualización:</strong>
+                    Unificar fuentes heterogéneas en un dataset coherente para mostrar
+                    tablas comparativas y métricas de disponibilidad.
+                </li>
+            </ul>
+        </div>
+    </section>
+
 
     <section>
         <h2>1. Web Scraping: Lógica de Comparación</h2>
