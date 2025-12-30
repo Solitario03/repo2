@@ -98,6 +98,12 @@ h3 {
     font-size: 0.95rem;
 }
 
+.gracias-gif {
+    width: 140px;      /* prueba 120–160 */
+    height: auto;
+    max-width: 100%;
+}
+
 
 .slide-gracias {
     background-image: url("https://javireina.wordpress.com/wp-content/uploads/2016/06/cropped-biblioteca-trinity-college2.jpg");
@@ -280,62 +286,58 @@ h3 {
     </section>
 
 
-<section class="ppt-slide">
-    <div class="ppt-card">
-        <h2>🎯 Objetivos del Proyecto</h2>
-
-        <p class="objetivo-general">
-            <strong> Objetivo General</strong><br>
-            Desarrollar un sistema integral de extracción y procesamiento de datos bibliográficos 
-            que combine el consumo de APIs abiertas con técnicas de Web Scraping 🕷️, 
-            permitiendo centralizar información académica y comparar precios en tiempo real 
-            entre librerías locales (SBS y Crisol) .
-        </p>
-
-        <h3>📌 Objetivos Específicos</h3>
-        <ul class="objetivos-lista">
-            <li>
-                <div class="objective-content">
+    <section class="ppt-slide">
+        <div class="ppt-card">
+            <h2>🎯 Objetivos del Proyecto</h2>
+    
+            <p class="objetivo-general">
+                <strong>🌐 Objetivo General</strong><br>
+                Desarrollar un sistema integral de extracción y procesamiento de datos bibliográficos 
+                que combine el consumo de APIs abiertas con técnicas de Web Scraping 🕷️, 
+                permitiendo centralizar información académica y comparar precios en tiempo real 
+                entre librerías locales (SBS y Crisol).
+            </p>
+    
+            <h3>📌 Objetivos Específicos</h3>
+            <ul class="objetivos-lista">
+                
+                <li>
                     <strong>Automatización de Fuentes Académicas:</strong><br>
-                    Implementar scripts en Python  para consumir APIs 
+                    Implementar scripts en Python para consumir APIs 
                     (OpenLibrary, OpenAlex, Crossref) y estructurar metadatos 
                     en formatos JSON / CSV.
-                </div>
-                
-                <div class="explanation-box">
-                    <p><strong>¿Por qué estructurar la data?</strong><br>
-                    Las APIs devuelven árboles de datos complejos y anidados. Para que la información sea utilizable, fue necesario realizar un <strong>mapeo y normalización</strong> de campos (parsing), estandarizando autores y fechas en un formato plano (JSON/CSV) compatible con la base de datos.</p>
-                </div>
-            </li>
-
-            <li>
-                <div class="objective-content">
+                    
+                    <div class="explanation-box">
+                        <p><strong>¿Por qué estructurar la data?</strong><br>
+                        Las APIs devuelven árboles de datos complejos. Para usarlos, fue necesario realizar un <strong>mapeo y normalización</strong> (parsing), estandarizando autores y fechas en un formato plano (JSON/CSV).</p>
+                    </div>
+                </li>
+    
+                <li>
                     <strong>Herramienta de Ahorro (Scraping):</strong><br>
                     Desarrollar un bot con Selenium 🤖 que compare precios 
                     de libros específicos (caso “Pinocho”) entre catálogos comerciales.
-                </div>
-
-                <div class="explanation-box">
-                    <p><strong>¿Por qué se filtró de este modo?</strong><br>
-                    Los datos extraídos directamente de la web son cadenas de texto (ej: "S/ 49.90"). Para realizar un análisis cuantitativo y determinar la "Mejor Opción", fue obligatorio realizar un <strong>Data Cleaning</strong> eliminando caracteres no numéricos y convirtiendo los strings a flotantes.</p>
-                </div>
-            </li>
-
-            <li>
-                <div class="explanation-box"
-                     <strong>Integración y Visualización:</strong><br>
+    
+                    <div class="explanation-box">
+                        <p><strong>¿Por qué se filtró de este modo?</strong><br>
+                        Los datos web son texto (ej: "S/ 49.90"). Para el análisis cuantitativo, fue obligatorio realizar un <strong>Data Cleaning</strong> eliminando caracteres no numéricos y convirtiendo a flotantes.</p>
+                    </div>
+                </li>
+    
+                <li>
+                    <strong>Integración y Visualización:</strong><br>
                     Unificar fuentes heterogéneas en un dataset coherente 
                     para mostrar tablas comparativas y métricas claras.
-                </div>
-
-                <div class="explanation-box">
-                    <p><strong>¿El reto de la unificación?</strong><br>
-                    Al tener fuentes tan distintas (APIs académicas vs. Tiendas comerciales), no siempre coinciden los identificadores únicos (ISBN). Se aplicó una lógica de <strong>consolidación de datos</strong> para cruzar la información basándose en coincidencias de títulos y metadatos limpios.</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-</section>
+    
+                    <div class="explanation-box">
+                        <p><strong>¿El reto de la unificación?</strong><br>
+                        Al tener fuentes tan distintas (APIs vs. Tiendas), los ISBN no siempre coinciden. Se aplicó una lógica de <strong>consolidación</strong> basada en coincidencias de títulos y metadatos limpios.</p>
+                    </div>
+                </li>
+    
+            </ul>
+        </div>
+    </section>
 
 
     <section>
